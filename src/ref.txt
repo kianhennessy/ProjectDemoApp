@@ -1,0 +1,8 @@
+REFERENCES
+
+https://www.youtube.com/watch?v=zQyrwxMPm88&ab_channel=Fireship
+https://www.youtube.com/watch?v=MYh6df4ZybU&ab_channel=JonahLawrence%E2%80%A2DevProTips
+https://stackoverflow.com/questions/37344066/firebase-this-domain-is-not-authorized
+https://www.appsloveworld.com/nodejs/100/102/firebase-auth-not-working-after-deploying-to-heroku-still-works-in-dev-at-localh
+https://www.makeuseof.com/react-app-firebase-connect/
+https://flexiple.com/react/build-a-powerful-chat-application-using-react-hooks/
