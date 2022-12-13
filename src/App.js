@@ -11,7 +11,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
   apiKey: "AIzaSyCxKo6uQS37dj5wXkJ-UVmTai64d7F7_9E",
-  authDomain: "projectdemoapp.herokuapp.com/",
+  authDomain: "messageappdemo-cd24a.firebaseapp.com",
   projectId: "messageappdemo-cd24a",
   storageBucket: "messageappdemo-cd24a.appspot.com",
   messagingSenderId: "737910771326",
