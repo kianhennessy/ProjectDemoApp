@@ -9,6 +9,8 @@ import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
+
+// Connect app to firebase, App SDK config
 firebase.initializeApp({
   apiKey: "AIzaSyCxKo6uQS37dj5wXkJ-UVmTai64d7F7_9E",
   authDomain: "messageappdemo-cd24a.firebaseapp.com",
@@ -38,7 +40,6 @@ function App() {
       </div>
   );
 }
-
 
 
 function SignIn() {
@@ -115,7 +116,5 @@ function ChatMessage(props) {
       </div>
   </>)
 }
-
-
 
 export default App;
