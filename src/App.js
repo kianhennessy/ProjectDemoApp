@@ -25,6 +25,7 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function App() {
+  // Check if user is signed in
   const [user] = useAuthState(auth);
   return (
       <div className="App">
@@ -34,6 +35,7 @@ function App() {
         </header>
 
         <section>
+          // If user is signed in, show chatroom, if not show sign in button
           {user ? <ChatRoom /> : <SignIn />}
         </section>
 
@@ -44,7 +46,11 @@ function App() {
 
 function SignIn() {
   const signInWithGoogle = () => {
+
+    // Use google sign in auth provider
     const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Sign in with popup
     auth.signInWithPopup(provider);
   }
   return(
@@ -62,17 +68,29 @@ function SignOut() {
 
 function ChatRoom() {
   const dummy = useRef();
+
+  // Reference to message in firestore DB
   const messageRef = firestore.collection('messages');
+
+  // Ordered by date created
   const query = messageRef.orderBy('createdAt').limit(25);
 
+  // Listen to changes in firestore DB in real time (returns array of objects, each object is a chat message in DB)
   const [messages] = useCollectionData(query, {idField: 'id'});
+
+  // Start message with empty string
   const [formValue, setFormValue] = useState('');
 
   const sendMessage = async(e) => {
+
+    // Prevent page from refreshing after form is submitted
     e.preventDefault();
 
+    // Grab user ID from currently signed in user
     const { uid, photoURL } = auth.currentUser;
 
+    // Add document to firestore DB
+    // Values written to DB are the form value, user ID, and date created
     await messageRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -80,7 +98,10 @@ function ChatRoom() {
       photoURL
     })
 
+    // Reset form value to empty string
     setFormValue('');
+
+    // Scroll to bottom of chat
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -94,6 +115,7 @@ function ChatRoom() {
 
         </main>
 
+
         <form onSubmit={sendMessage}>
 
           <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Message body" />
@@ -105,8 +127,12 @@ function ChatRoom() {
   )
 }
 
+// Distinguish between messages sent by user and messages sent by other users
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
+
+  // Compare user id on firestore document to the currently signed in user
+  // If they match, show message on right side of screen
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return ( <>
