@@ -36,7 +36,7 @@ function App() {
 
         <section>
           // If user is signed in, show chatroom, if not show sign in button
-          {user ? <ChatRoom /> : <SignIn />}
+          {user ? <MessageArea /> : <SignIn />}
         </section>
 
       </div>
@@ -66,7 +66,7 @@ function SignOut() {
   )
 }
 
-function ChatRoom() {
+function MessageArea() {
   const dummy = useRef();
 
   // Reference to message in firestore DB
